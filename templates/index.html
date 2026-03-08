@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Predictive Pulse | Blood Pressure Prediction</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Predictive Pulse</h1>
+<p class="subtitle">Machine Learning Based Hypertension Risk Assessment</p>
+
+<form action="/predict" method="POST" class="form-grid">
+
+<div class="input-group">
+<label>Gender</label>
+<select name="Gender">
+<option value="0">Male</option>
+<option value="1">Female</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Age Group</label>
+<select name="Age">
+<option value="1">18-34</option>
+<option value="2">35-50</option>
+<option value="3">51-64</option>
+<option value="4">65+</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Family History</label>
+<select name="History">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Patient Status</label>
+<select name="Patient">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Taking Medication</label>
+<select name="TakeMedication">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Severity</label>
+<select name="Severity">
+<option value="0">Mild</option>
+<option value="1">Moderate</option>
+<option value="2">Severe</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Shortness of Breath</label>
+<select name="BreathShortness">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Visual Changes</label>
+<select name="VisualChanges">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Nose Bleeding</label>
+<select name="NoseBleeding">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Time Since Diagnosis</label>
+<input type="number" name="Whendiagnoused" required>
+</div>
+
+<div class="input-group">
+<label>Systolic Pressure</label>
+<input type="number" name="Systolic" required>
+</div>
+
+<div class="input-group">
+<label>Diastolic Pressure</label>
+<input type="number" name="Diastolic" required>
+</div>
+
+<div class="input-group">
+<label>Controlled Diet</label>
+<select name="ControlledDiet">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+
+<div class="full-width">
+<button type="submit">Predict Risk</button>
+</div>
+
+</form>
+
+{% if prediction %}
+
+<div class="result-box">
+
+<h2>Prediction Result</h2>
+
+<p class="stage">{{ prediction }}</p>
+
+<p class="confidence">Confidence Score: {{ confidence }}%</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
