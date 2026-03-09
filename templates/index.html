@@ -2,22 +2,44 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<title>Predictive Pulse | Blood Pressure Prediction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Predictive Pulse | Hypertension Prediction</title>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Predictive Pulse</h1>
-<p class="subtitle">Machine Learning Based Hypertension Risk Assessment</p>
+<header>
 
-<form action="/predict" method="POST" class="form-grid">
+<h1><i class="fa-solid fa-heart-pulse"></i> Predictive Pulse</h1>
+
+<p class="subtitle">
+AI Powered Hypertension Risk Assessment
+</p>
+
+</header>
+
+
+<form action="/predict" method="POST" class="form-card">
+
+
+<!-- Demographics -->
+
+<h2 class="section-title">
+<i class="fa-solid fa-user"></i> Demographics
+</h2>
+
+<div class="form-grid">
 
 <div class="input-group">
 <label>Gender</label>
@@ -52,6 +74,17 @@
 <option value="1">Yes</option>
 </select>
 </div>
+
+</div>
+
+
+<!-- Medical Condition -->
+
+<h2 class="section-title">
+<i class="fa-solid fa-notes-medical"></i> Medical Condition
+</h2>
+
+<div class="form-grid">
 
 <div class="input-group">
 <label>Taking Medication</label>
@@ -99,6 +132,17 @@
 <input type="number" name="Whendiagnoused" required>
 </div>
 
+</div>
+
+
+<!-- Vital Signs -->
+
+<h2 class="section-title">
+<i class="fa-solid fa-heart"></i> Vital Signs
+</h2>
+
+<div class="form-grid">
+
 <div class="input-group">
 <label>Systolic Pressure</label>
 <input type="number" name="Systolic" required>
@@ -117,21 +161,48 @@
 </select>
 </div>
 
-<div class="full-width">
-<button type="submit">Predict Risk</button>
+</div>
+
+
+<div class="submit-area">
+
+<button type="submit">
+<i class="fa-solid fa-stethoscope"></i>
+Predict Risk
+</button>
+
 </div>
 
 </form>
 
+
 {% if prediction %}
 
-<div class="result-box">
+<div class="result-card">
 
-<h2>Prediction Result</h2>
+<h2>
+<i class="fa-solid fa-chart-line"></i>
+Prediction Result
+</h2>
 
 <p class="stage">{{ prediction }}</p>
 
-<p class="confidence">Confidence Score: {{ confidence }}%</p>
+<div class="confidence">
+
+<p>Confidence Score</p>
+
+<div class="progress-bar">
+
+<div class="progress"
+style="width: {{ confidence }}%">
+
+{{ confidence }}%
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
